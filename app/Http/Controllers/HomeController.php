@@ -112,12 +112,20 @@ class HomeController extends Controller
     {
         $user = User::findOrFail($id);
 
-        if ('delete')
+       if ('delete')
         {
             $user->games()->delete();
         }
 
-        return redirect("/users")->with("message", "User was deleted successfully");
+        return redirect("/home")->with("message", "User was deleted successfully");
+    }
+
+    public function forceDestroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->forceDelete();
+
+        return redirect('/home')->with('message', 'User has been deleted successfully');
     }
 
 }

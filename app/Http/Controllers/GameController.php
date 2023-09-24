@@ -100,9 +100,16 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy(Request $id)
     {
-        //
+                $game = Game::findOrFail($id);
+
+//                if ('delete')
+                {
+                    $game->forceDelete();
+                }
+
+                return redirect("/games")->with("message", "Game was deleted successfully");
     }
 
     public function user(User $user)
@@ -115,5 +122,13 @@ class GameController extends Controller
 
         return view("home.index", compact('games', 'userName', 'user'));
 
+    }
+
+    public function forceDestroy($id)
+    {
+        $game = Game::findOrFail($id);
+        $game->forceDelete();
+
+        return redirect('/games')->with('message', 'Game has been deleted successfully');
     }
 }

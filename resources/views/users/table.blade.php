@@ -10,8 +10,6 @@
         <td>Name</td>
         <td>Email</td>
         <td>Date of entry</td>
-{{--    <td>Password</td>--}}
-{{--    <td>Number of moves</td>--}}
         <td>Number of wins</td>
         <td>Number of losses</td>
 

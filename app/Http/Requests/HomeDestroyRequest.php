@@ -13,7 +13,7 @@ class HomeDestroyRequest extends FormRequest
      */
     public function authorize()
     {
-        return !($this->route('home') == config('cms.default_user_id') || $this->route('home') == auth()->user()->id);
+       return !($this->route('home') == config('cms.default_user_id') || $this->route('home') == auth()->user()->id);
     }
 
     /**

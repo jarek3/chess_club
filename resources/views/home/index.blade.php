@@ -33,8 +33,6 @@
                         <!-- /.box-header -->
                         <div class="box-body ">
 
-{{--                        @include('backend.partials.message')--}}
-
                           @if(!$users->count())
                             <div class="alert alert-danger">
                               <strong> No Record Found </strong>

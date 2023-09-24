@@ -28,16 +28,11 @@
                 <a href="{{route('games.edit', $game->id)}}" class=" btn btn-xs btn-default">
                     <i class="fa fa-edit"></i>
                 </a>
-                @if($game->id == config('cms.default_game_id') );
-                    <button onclick="return false" type="submit" class="btn btn-xs btn-danger disabled">
-                        <i class="fa fa-times"></i>
-                    </button>
-                @else
 
-                    <a href="#" onclick="return confirm('Are you sure?');" type="submit" class=" btn btn-xs btn-danger">
-                        <i class="fa fa-times"></i>
-                    </a>
-                @endif
+                <button onclick="return confirm('Are you sure?');" type="submit" class="btn btn-xs btn-danger">
+                    <i class="fa fa-times"></i>
+                </button>
+                {!! Form::close() !!}
                 {!! Form::close() !!}
 
             </td>

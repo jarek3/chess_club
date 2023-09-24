@@ -38,3 +38,7 @@ Route::put('/games/{game}/edit', [GameController::class, 'edit'])->name('game.ed
 Route::get('games//create', [GameController::class, 'create'])->name('games.create');
 Route::delete('/users/{user}', [App\Http\Controllers\UsersController::class, 'forceDestroy',
 ])->name('user.destroy');
+Route::delete('/home/{home}', [App\Http\Controllers\HomeController::class, 'forceDestroy',
+])->name('home.destroy');
+Route::delete('/game/{game}', [App\Http\Controllers\GameController::class, 'forceDestroy',
+])->name('games.destroy');
