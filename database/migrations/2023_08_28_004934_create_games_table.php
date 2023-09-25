@@ -15,18 +15,15 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('white');
-            $table->string('black');
-            $table->string('winner')->nullable();
+            $table->foreign('white')->nullable()->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('black')->nullable()->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('winner')->nullable()->references('id')->on('users')->onDelete('restrict');
             $table->timestamp('game_time');
             $table->integer('whiteMoves')->nullable();
             $table->integer('blackMoves')->nullable();
             $table->integer('minMovesGame')->nullable();
             $table->timestamps();
             $table->foreign('id')->nullable()->references('id')->on('users')->onDelete('restrict');;
-            $table->foreign('white')->nullable()->references('id')->on('users')->onDelete('restrict');
-            $table->foreign('black')->nullable()->references('id')->on('users')->onDelete('restrict');
-            $table->foreign('winner')->nullable()->references('id')->on('users')->onDelete('restrict');
 
         });
 
