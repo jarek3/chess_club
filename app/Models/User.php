@@ -159,7 +159,7 @@ class User extends Authenticatable
 
     public function blackUserMoves()
     {
-        if (($this->black())->count()!==0)
+       if (($this->black())->count()!==0)
        return $this->hasMany(Game::class, 'black')->where('winner', '=', $this->id)->min('blackMoves');
     }
 
