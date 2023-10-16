@@ -25,14 +25,14 @@ class Game extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'game_user', 'game_id', 'user_id')->using(UserGame::class);
+        return $this->belongsToMany(User::class, 'game_user', 'game_id', 'user_id')->using(UserGame::class)->withPivot('winCount');
     }
 
 
-    public function getWinner()    {
+/*    public function getWinner()    {
 
        return User::findOrFail($this->winner)->name;
-    }
+    }*/
 
 
     public function getWhite()
@@ -53,6 +53,16 @@ class Game extends Model
     public function minMovesGame()
     {
         return min($this->whiteMoves, $this->blackMoves);
+    }
+
+    public function winCount()
+    {
+       // foreach ($this->users()  as $user)
+        //return ($this->belongsTo(User::class, 'winner')->with('user_id')->count());
+        //return ($this->belongsTo(User::class, 'winner')->count());
+        //return Game::all()->where('winner')->count();
+        return Game::with('users')->where('winner', '=', $this->id)->count();
+        //return array_sum($this->isWinner();
 
     }
 

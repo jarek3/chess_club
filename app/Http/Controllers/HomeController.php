@@ -28,9 +28,11 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        global $user;
+       // global $user;
+//      $users      = User::with('games')->withCount('winner')->orderByRaw('winner_count DESC')->paginate($this->limit);
         $users      = User::with('games')->orderBy('name')->paginate($this->limit);
         $usersCount = User::with('games')->count();
+
 
             return view("home.index", compact('users', 'usersCount'));
     }
@@ -94,10 +96,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UserUpdateRequest $request, $id)
-    {
+    {//$game = new Game();
         $user = User::findOrFail($id);
                 $user->update($request->all());
-
+       // $user->games()->save($game);
                return redirect("home")->with("message", "User was updated successfully");
     }
 

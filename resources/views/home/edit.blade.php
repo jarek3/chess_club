@@ -27,7 +27,8 @@
                 'method'=>'PUT',
                 'route' =>['home.update', $user->id],
                 'files' => TRUE,
-                'id' => 'user-form'
+                'id' => 'user-form',
+                'winCount' => $user->winCount()
                 ])
                 !!}
 

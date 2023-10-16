@@ -13,7 +13,7 @@ class GameUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class GameUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-        //
+            'white' =>'different:field|nullable',
+            'black' =>'different:field|nullable',
         ];
     }
 }

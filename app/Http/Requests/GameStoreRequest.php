@@ -36,8 +36,8 @@ class GameStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'white' =>'different:field',
-        'black' =>'different:field',
+        'white' =>'different:field|nullable',
+        'black' =>'different:field|nullable',
 
         ];
     }

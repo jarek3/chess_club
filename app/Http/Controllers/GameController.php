@@ -22,7 +22,7 @@ class GameController extends Controller
     public function index(User $user, Request $request)    {
 
         $games      = Game::with('users')->orderBy('id')->paginate($this->limit);
-        $gamesCount = Game::with('users' )-> count();
+        $gamesCount = Game::with('users' )->count();
 
         return view('games.index', ['games' => $games], compact('games', 'gamesCount' ));
 
@@ -47,9 +47,21 @@ class GameController extends Controller
      */
     public function store(GameStoreRequest $request)
     {
+        $game = new Game();
+        //$user=User::find($request->all());
+        $game->white=$request->input('white');
+        $game->black=$request->input('black');
+        $game->winner=$request->input('winner');
+        $game->whiteMoves=$request->input('whiteMoves');
+        $game->blackMoves=$request->input('blackMoves');
+        $game->minMovesGame= (new \App\Models\User)->minMovesUserGame();
+        $user = User::first();
+        $game->winCount();
 
-        $game = Game::create($request->all());
-        $game->users()->attach($request->user);
+        $game->save();
+        //$user->save();
+
+        $game->users()->attach(['white'=>$game->white, 'black'=>$game->black]);
 
 
         return redirect("games")->with("message", "New game was created successfully!");
@@ -86,7 +98,7 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\GameUpdateRequest $request, $id)
     {
         $game = Game::findOrFail($id);
         $game->update($request->all());
@@ -104,7 +116,7 @@ class GameController extends Controller
     {
                 $game = Game::findOrFail($id);
 
-//                if ('delete')
+                if ('delete')
                 {
                     $game->forceDelete();
                 }

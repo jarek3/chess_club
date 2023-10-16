@@ -44,6 +44,15 @@
 
         </div>
 
+        <div class="form-group {{$errors->has($user->winCount()) ? 'has-error' : ''}}">
+            {!! Form::label('winCount', 'Number of wins') !!}
+            {!! Form::text('winCount', null, ['class'=>'form-control', 'placeholder'=>'Number of wins']) !!}
+
+            @if($errors->has('winCount'))
+                <span class="help-block">{{$errors->first('winCount')}}</span>
+            @endif
+        </div>
+
         <!-- /.box-body -->
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">{{$user->exists ? 'Update' : 'Save'}}</button>

@@ -24,8 +24,12 @@ class UsersController extends Controller
     protected $limit = 14;
 
     public function index(Request $request)
-    {
-        $users      = User::with('games')->orderBy('name')->paginate($this->limit);
+    {   $user = new User();
+
+        $winCount = $user->winCount();
+
+        $users      = User::with('games')->withCount('winner')->orderByRaw('winner_count DESC')->paginate($this->limit);
+
         $usersCount = User::count();
 
         return view("users.index", compact('users', 'usersCount'));

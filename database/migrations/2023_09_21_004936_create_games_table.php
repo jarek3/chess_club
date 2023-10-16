@@ -14,16 +14,19 @@ class CreateGamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('white')->nullable()->references('id')->on('users')->onDelete('restrict');
-            $table->foreign('black')->nullable()->references('id')->on('users')->onDelete('restrict');
-            $table->foreign('winner')->nullable()->references('id')->on('users')->onDelete('restrict');
+            $table->bigincrements('id')->unsigned();
+            $table->integer('white')->nullable();
+            $table->integer('black')->nullable();
+            $table->integer('winner')->nullable();
             $table->timestamp('game_time');
             $table->integer('whiteMoves')->nullable();
             $table->integer('blackMoves')->nullable();
             $table->integer('minMovesGame')->nullable();
             $table->timestamps();
-            $table->foreign('id')->nullable()->references('id')->on('users')->onDelete('restrict');;
+            $table->foreign('id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('white')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('black')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('winner')->references('id')->on('users')->onDelete('restrict');
 
         });
 

@@ -33,7 +33,6 @@
                     <i class="fa fa-times"></i>
                 </button>
                 {!! Form::close() !!}
-                {!! Form::close() !!}
 
             </td>
             <td>{{$game->getWhite()}}</td>

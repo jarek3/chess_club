@@ -34,6 +34,8 @@ class User extends Authenticatable
         'gamesCount',
         'winCount',
         'lossCount',
+        'countWhite',
+        'countBlack',
         'number_of_moves',
         'countWinWhite',
         'countWinBlack',
@@ -74,11 +76,6 @@ class User extends Authenticatable
     public function winner()
     {
         return $this->hasMany(Game::class, 'winner');
-    }
-
-    public function getBlackFio()
-    {
-        return User::findOrFail($this->black)->name;
     }
 
     public function games()
@@ -152,6 +149,8 @@ class User extends Authenticatable
         echo "NO WIN!";
     }
 
+
+
     public function whiteUserMoves()
     {
         if (($this->white())->count()!==0)
@@ -168,6 +167,7 @@ class User extends Authenticatable
     {
         return min($this->whiteUserMoves(), $this->blackUserMoves());
     }
+
 
     public function winWhiteCount()
     {

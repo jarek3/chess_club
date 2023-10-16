@@ -6,6 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserStoreRequest extends FormRequest
 {
+    /**
+     * @var mixed
+     */
+    public $game;
 
     /**
      * Get the validation rules that apply to the request.

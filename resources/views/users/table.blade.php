@@ -37,7 +37,6 @@
             <td>{{$user->date_of_entry}}</td>
             <td>{{$user->winCount()}}</td>
             <td>{{$user->lossCount()}}</td>
-
         </tr>
 
     @endforeach
