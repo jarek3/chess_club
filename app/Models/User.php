@@ -64,13 +64,13 @@ class User extends Authenticatable
 
     public function white()
     {
-        return $this->hasMany(Game::class, 'winner')->where('white', '=', $this->id);
+        return $this->hasMany(Game::class, 'white');
 
     }
 
     public function black()
     {
-        return $this->hasMany(Game::class, 'winner')->where('black', '=', $this->id);
+        return $this->hasMany(Game::class, 'black');
     }
 
     public function winner()
@@ -133,6 +133,11 @@ class User extends Authenticatable
         return $this->hasMany(Game::class, 'winner')->withOnly('white');
     }
 
+    public function countWhite()
+    {
+        return $this->hasMany(Game::class, 'white')->withOnly('white');
+    }
+
     public function isBlack()
     {
         return $this->hasMany(Game::class, 'winner');
@@ -141,25 +146,23 @@ class User extends Authenticatable
 
     public function ratio()
     {
-    if (($this->winner()->count())!==0)
+     if (($this->winner()->count())!==0)
 
         return ($this->white()->count().':'.($this->black())->count());
 
-    else
+     else
         echo "NO WIN!";
     }
 
-
-
     public function whiteUserMoves()
     {
-        if (($this->white())->count()!==0)
-            return $this->hasMany(Game::class, 'white')->where('winner', '=', $this->id)->min('whiteMoves');
+     if (($this->white())->count()!==0)
+        return $this->hasMany(Game::class, 'white')->where('winner', '=', $this->id)->min('whiteMoves');
     }
 
     public function blackUserMoves()
     {
-       if (($this->black())->count()!==0)
+     if (($this->black())->count()!==0)
        return $this->hasMany(Game::class, 'black')->where('winner', '=', $this->id)->min('blackMoves');
     }
 
@@ -167,7 +170,6 @@ class User extends Authenticatable
     {
         return min($this->whiteUserMoves(), $this->blackUserMoves());
     }
-
 
     public function winWhiteCount()
     {

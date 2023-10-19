@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\UserRequest;
@@ -21,18 +22,16 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected $limit = 14;
+    protected $limit = 10;
 
     public function index(Request $request)
-    {   $user = new User();
-
-        $winCount = $user->winCount();
-
-        $users      = User::with('games')->withCount('winner')->orderByRaw('winner_count DESC')->paginate($this->limit);
-
+    {
+        $user = new User();
+        $winCount   = $user->winCount();
+        $users      = User::with('games')->withCount('white', 'black')->havingRaw("white_count > 2 AND black_count > 2")->withCount('winner')->orderByRaw('winner_count DESC')->paginate($this->limit);
         $usersCount = User::count();
 
-        return view("users.index", compact('users', 'usersCount'));
+        return view("users.index", compact('users',  'usersCount'));
     }
 
     /**

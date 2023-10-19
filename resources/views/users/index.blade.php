@@ -9,7 +9,7 @@
         <section class="content-header">
             <h1>
                 Users
-                <small>Display All Players</small>
+                <small>List of the top 10 players by number of wins who have played at least 3 games with each color of pieces</small>
             </h1>
             <ol class="breadcrumb">
                 <li> <a href="{{url('/home')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -49,7 +49,7 @@
                                  {{$users->appends(Request::query())->render()}}
 
                             <div class="pull-right">
-                                <small>{{$usersCount}} {{Str::plural ('Item', $usersCount)}}</small>
+{{--                                <small>{{$usersCount}} {{Str::plural ('Item', $usersCount)}}</small>--}}
                             </div>
                         </div>
                     </div>
