@@ -58,8 +58,8 @@
                 </div>
             </div>
             <!-- ./row -->
-            </div>
         </section>
+    </div>
         <!-- /.content -->
 
 @endsection

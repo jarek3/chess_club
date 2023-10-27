@@ -9,7 +9,7 @@
         <section class="content-header">
             <h1>
                 Users
-                <small>List of the top 10 players by number of wins who have played at least 3 games with each color of pieces</small>
+                <small>List of the top 10 players by number of wins who have played at least 2 games with each color of pieces</small>
             </h1>
             <ol class="breadcrumb">
                 <li> <a href="{{url('/home')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -51,6 +51,7 @@
                             <div class="pull-right">
 {{--                                <small>{{$usersCount}} {{Str::plural ('Item', $usersCount)}}</small>--}}
                             </div>
+                           </div>
                         </div>
                     </div>
                     <!-- /.box -->

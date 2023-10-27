@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
-    protected $limit = 8;
+    protected $limit = 11;
     /**
      * Display a listing of the resource.
           *
@@ -55,7 +55,7 @@ class GameController extends Controller
         $game->whiteMoves=$request->input('whiteMoves');
         $game->blackMoves=$request->input('blackMoves');
         $game->minMovesGame= (new \App\Models\User)->minMovesUserGame();
-        $user = User::first();
+
         $game->winCount();
 
         $game->save();

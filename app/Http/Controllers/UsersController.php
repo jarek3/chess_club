@@ -28,7 +28,13 @@ class UsersController extends Controller
     {
         $user = new User();
         $winCount   = $user->winCount();
-        $users      = User::with('games')->withCount('white', 'black')->havingRaw("white_count > 2 AND black_count > 2")->withCount('winner')->orderByRaw('winner_count DESC')->paginate($this->limit);
+        $users      = User::with('games')
+                            ->withCount('white', 'black')
+                            ->havingRaw("white_count > 2 AND black_count > 2")
+                            ->withCount('winner')
+                            ->orderByRaw("winner_count DESC ")
+                            ->havingRaw('winner_count < 10')
+                            ->paginate($this->limit);
         $usersCount = User::count();
 
         return view("users.index", compact('users',  'usersCount'));

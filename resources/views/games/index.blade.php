@@ -45,6 +45,7 @@
                                <div class="pull-right">
                                    <small>{{$gamesCount}} {{Str::plural ('Item', $gamesCount)}}</small>
                                </div>
+                           </div>
                         </div>
                     </div>
                     <!-- /.box -->
