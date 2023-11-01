@@ -39,7 +39,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-{{--    @include('layouts.backend.navbar')--}}
+{{--    @include('layouts.navbar')--}}
 
 @include('layouts.sidebar')
 

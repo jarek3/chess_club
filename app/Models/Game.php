@@ -57,12 +57,7 @@ class Game extends Model
 
     public function winCount()
     {
-       // foreach ($this->users()  as $user)
-        //return ($this->belongsTo(User::class, 'winner')->with('user_id')->count());
-        //return ($this->belongsTo(User::class, 'winner')->count());
-        //return Game::all()->where('winner')->count();
         return Game::with('users')->where('winner', '=', $this->id)->count();
-        //return array_sum($this->isWinner();
 
     }
 
